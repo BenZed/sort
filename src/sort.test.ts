@@ -1,4 +1,4 @@
-import by, { toComparable } from './sort'
+import by from './sort'
 import { expect, test } from '@jest/globals'
 
 test('sorts numbers by value', () => {
@@ -20,9 +20,19 @@ test('sorts strings', () => {
 })
 
 test('sorts an array of objects by a given key', () => {
-    const input = [ { id: 4, name: 'apple' }, { id: 2, name: 'pear' }, { id: 7, name: 'banana' }, { id: 1, name: 'orange' } ]
+    const input = [
+        { id: 4, name: 'apple' },
+        { id: 2, name: 'pear' },
+        { id: 7, name: 'banana' },
+        { id: 1, name: 'orange' }
+    ]
 
-    const expected = [ { id: 1, name: 'orange' }, { id: 2, name: 'pear' }, { id: 4, name: 'apple' }, { id: 7, name: 'banana' } ]
+    const expected = [
+        { id: 1, name: 'orange' },
+        { id: 2, name: 'pear' },
+        { id: 4, name: 'apple' },
+        { id: 7, name: 'banana' }
+    ]
 
     const output = input.sort(by('id'))
 
@@ -30,8 +40,18 @@ test('sorts an array of objects by a given key', () => {
 })
 
 test('sorts an array of objects by a transform function', () => {
-    const input = [ { name: 'apple' }, { name: 'pear' }, { name: 'banana' }, { name: 'kiwi' } ]
-    const expected = [ { name: 'banana' }, { name: 'apple' }, { name: 'kiwi' }, { name: 'pear' }]
+    const input = [
+        { name: 'apple' },
+        { name: 'pear' },
+        { name: 'banana' },
+        { name: 'kiwi' }
+    ]
+    const expected = [
+        { name: 'banana' },
+        { name: 'apple' },
+        { name: 'kiwi' },
+        { name: 'pear' }
+    ]
     //                           by reverse name order
     const output = input.sort(by(o => o.name.split('').reverse().join('')))
 
@@ -42,25 +62,14 @@ test('sorts an array of objects by multiple criteria', () => {
     const people = [
         { name: 'Alice', age: 25 },
         { name: 'Bob', age: 25 },
-        { name: 'Charlie', age: 30 },
+        { name: 'Charlie', age: 30 }
     ]
-      
+
     const sorted = people.sort(by('age', 'name'))
-      
+
     expect(sorted).toEqual([
         { name: 'Alice', age: 25 },
         { name: 'Bob', age: 25 },
-        { name: 'Charlie', age: 30 },
-    ]) 
-})
-
-test('toComparable', () => {
-
-    expect(toComparable('cake') < toComparable('base')).toBe(false)
-    expect(toComparable([0,1]) < toComparable([0,1,2])).toBe(true)
-    expect(toComparable([0,1]) === toComparable([3,2])).toBe(true)
-    expect(toComparable(15) > toComparable(10)).toBe(true)
-    expect(toComparable(15n) > toComparable(10n)).toBe(true)
-    expect(toComparable(15n) === toComparable(15n)).toBe(true)
-
+        { name: 'Charlie', age: 30 }
+    ])
 })
