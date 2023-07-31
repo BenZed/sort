@@ -38,6 +38,7 @@
     },
     "dependencies": {
         "@benzed/types": "^1.0.1",
-        "@benzed/each": "^1.0.0"
+        "@benzed/each": "^1.0.0",
+        "@benzed/traits": "^1.0.2"
     }
 }
