@@ -11,6 +11,7 @@ import {
 export type SortableObjects =
     | { valueOf(): bigint | number | boolean }
     | { length: number }
+
 export type Sortable = string | bigint | number | boolean | SortableObjects
 
 export type SortableValues<T> = T extends string

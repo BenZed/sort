@@ -2,16 +2,18 @@
     "name": "@benzed/sort",
     "description": "Convenience utility methods and types for sorting arrays",
     "main": "./lib",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publishConfig": {
         "access": "public"
     },
     "scripts": {
-        "test": "jest --run-in-band --all",
-        "test:dev": "jest --run-in-band --only-changed --verbose",
+        "update": "npx npm-check -u",
+        "test": "jest --run-in-band --coverage --all",
+        "test:dev": "jest --run-in-band --only-changed --watch --verbose --coverage",
+        "tsc": "shx rm -rf lib && tsc",
         "lint": "eslint src/**/*.ts --fix",
-        "build": "npm run lint && npm run tsc",
-        "tsc": "shx rm -rf lib && shx mkdir lib && tsc"
+        "build": "npm run test && npm run lint && npm run tsc",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",
