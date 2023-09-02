@@ -58,8 +58,8 @@ interface By {
     <T>(...options: ByTransformOrKey<T>[]): Sorter<T>
     value: Sorter
 
-    // get descending(): By
-    // get ascending(): By
+    // TODO get descending(): By
+    // TODO get ascending(): By
 }
 
 const by = (<T>(...options: ByTransformOrKey<T>[]): Sorter<T> => {
